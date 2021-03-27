@@ -1,0 +1,11 @@
+div.SearchBox{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+div.Title{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
