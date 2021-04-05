@@ -1,7 +1,8 @@
 import './App.css';
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import SearchBox from './SearchBox';
-import GitHubCards from './GitHubCards'
+import GitHubCards from './GitHubCards';
+import debounce from 'lodash.debounce'
 
 class App extends Component {
   
@@ -12,13 +13,13 @@ class App extends Component {
     }
   }
 
-  onSearchChange = (event) => {
-    this.setState({searchField: event.target.value})
-  }
-  
-  
 
-
+  onSearchChange = debounce((searchField) => {
+    this.setState({ searchField });
+    console.log();
+  },500);
+    
+  
   render(){
     return(
       <div>
@@ -26,10 +27,10 @@ class App extends Component {
           <h1>GitHub Search</h1>
         </div>
         <div>
-          <SearchBox/>
+          <SearchBox searchChange={e => this.onSearchChange(e.target.value)}/>
         </div>
         <div>
-          <GitHubCards/>
+          <GitHubCards searchField={this.state.searchField}/>
         </div>
       </div>
       
